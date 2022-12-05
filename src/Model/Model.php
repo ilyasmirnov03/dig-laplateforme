@@ -27,7 +27,7 @@ class Model
         if (!self::$dbh) {
             try {
                 $dsn = 'mysql:host=' . APP_DB_HOST . ';dbname=' . APP_DB_NAME . ';charset=UTF8';
-                self::$dbh = new PDO(
+                self::$dbh = new \PDO(
                     $dsn,
                     // nom de l'utilisateur MYSQL
                     APP_DB_USER,
@@ -37,8 +37,8 @@ class Model
                     // sous forme de tableau associatif
                     // et de demander de déclencher une exception quand une erreur de SQL est détectée
                     [
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+                        \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
                     ]
                 );
             } catch (\Exception $e) {

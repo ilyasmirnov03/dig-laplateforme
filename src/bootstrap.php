@@ -16,13 +16,5 @@ require './../vendor/autoload.php';
 require 'Config/config.php';
 
 /** 3 */
-// les fonctions de debug et fonction utilisateur
-require 'Helper/HTTP.php';
-
-/** 4 */
-// les modèles d'accés à la base
-require 'Model/Model.php';
-
-/** 5 */
 // traiter les différentes routes
 require 'router.php';

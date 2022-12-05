@@ -8,5 +8,6 @@ $routes = new RouteCollection();
 $routes->add('eco_index/index', new Route('/eco'));
 $routes->add('points/index', new Route('/points'));
 $routes->add('member/add', new Route('/add'));
+$routes->add('member/save', new Route('/save'));
 
 return $routes;

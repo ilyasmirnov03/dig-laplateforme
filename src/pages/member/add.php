@@ -9,7 +9,7 @@ echo HTTP::head("ajout");
 <body>
     <div class="w-25 mx-auto">
         <h1 class="text-center">Ajout produit</h1>
-        <form method="GET">
+        <form action="<?php echo HTTP::url('/save') ?>" method="POST">
             <div class="mb-3">
                 <label for="libelle" class="form-label">Libellé produit</label>
                 <input name="libelle" type="text" class="form-control" required>
@@ -42,13 +42,13 @@ echo HTTP::head("ajout");
             <div class="mb-3 changeable">
                 <p>Produit bio :</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="bio">
+                    <input class="form-check-input" value="1" type="radio" name="bio">
                     <label class="form-check-label" for="bio1">
                         Oui
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="bio">
+                    <input class="form-check-input" value="0" type="radio" name="bio">
                     <label class="form-check-label" for="bio2">
                         Non
                     </label>
@@ -56,7 +56,7 @@ echo HTTP::head("ajout");
             </div>
             <div class="mb-3 changeable">
                 <select name="animal" class="form-select">
-                    <option selected>--Choisissez l'impact animale--</option>
+                    <option selected disabled value="">--Choisissez l'impact animale--</option>
                     <option value="vegan">Vegan</option>
                     <option value="vegetarien">Vegetarien</option>
                     <option value="chair-animale">Chair animale</option>
@@ -65,13 +65,13 @@ echo HTTP::head("ajout");
             <div class="mb-3 changeable">
                 <p>Recuperation :</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="recup">
+                    <input class="form-check-input" value="1" type="radio" name="recup">
                     <label class="form-check-label" for="recup1">
                         Oui
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="recup">
+                    <input class="form-check-input" value="0" type="radio" name="recup">
                     <label class="form-check-label" for="recup2">
                         Non
                     </label>
