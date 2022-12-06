@@ -1,5 +1,6 @@
 <?php
 
+use App\Helper\HTTP;
 use App\Model\Products;
 
 
@@ -12,3 +13,5 @@ Products::getInstance()->create([
     'impactAnimal' => isset($_POST['animal']) ? $_POST['animal'] : "",
     'recup' => isset($_POST['recup']) ? $_POST['recup'] : ""
 ]); 
+
+HTTP::redirect('/add');

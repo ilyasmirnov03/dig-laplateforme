@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Avenir Next Cyr Thin';
+    src: url('../fonts/avenirnextcyr/AvenirNextCyr-Thin.eot');
+    src: url('../fonts/avenirnextcyr/AvenirNextCyr-Thin.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/avenirnextcyr/AvenirNextCyr-Thin.woff') format('woff'),
+        url('../fonts/avenirnextcyr/AvenirNextCyr-Thin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Filson Soft';
+    src: url('../fonts/filsonsoft/FilsonSoft-medium.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Filson Soft';
+}
+
+/*=============================================
+=            Cart styling                     =
+=============================================*/
+
+#cart-wrapper {
+    position:absolute;
+    top:10%;
+    background-color:#f8f8f8;
+    width:100%;
+    padding:9rem;
+}
+
+#left-block {
+    background-color:#fff;
+}
+

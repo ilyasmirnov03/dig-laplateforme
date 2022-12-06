@@ -2,6 +2,14 @@
 
 namespace App\Helper;
 
+/**
+ * Classe HTTP avec des methodes :
+ *  - is_method_get() pour verifier si le serveur est en GET
+ *  - head(string $title) qui renvoit le head en HTML
+ *  - footer() qui renvoit le footer en HTML
+ *  - url(string $url) pour generer des url 
+ *  - redirect(string $url) pour generer des url dans header()
+ */
 class HTTP
 {
   public static function is_method_get(): bool
@@ -17,6 +25,7 @@ class HTTP
    */
   public static function head(string $title = ''): string
   {
+    $css = HTTP::url('/assets/css/styles.css');
     return  <<<HTML_HEAD
  <!DOCTYPE html>
  <html lang="fr">
@@ -26,6 +35,9 @@ class HTTP
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://www.la-plate-forme.fr/themes/lpf/assets/cache/theme-ea2af4200.css" media="all">
+   <link href="$css" rel="stylesheet">
+   <script src="https://kit.fontawesome.com/3a4ebac570.js" crossorigin="anonymous"></script>
    <title>$title</title>
  </head>
  HTML_HEAD;
@@ -55,7 +67,7 @@ HTML_FOOTER;
   {
     // ajouter le slash si nécéssaire
     $url = substr($url, 0, 1) != '/' ? '/' . $url : $url;
-    echo APP_ROOT_URL_COMPLETE . $url;
+    return APP_ROOT_URL_COMPLETE . $url;
   }
 
   /**
