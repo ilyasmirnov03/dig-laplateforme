@@ -6,7 +6,7 @@ dump($_POST);
 
 Products::getInstance()->create([
     'libelle' => $_POST['libelle'],
-    'idEnt' => '1',
+    'idEnt' => $_POST['entreprise'],
     'categorie' => $_POST['categorie'],
     'provenance' => $_POST['provenance'],
     'bio' => isset($_POST['bio']) ? $_POST['bio'] : "",
