@@ -101,7 +101,7 @@ class Model
     {
         // décomposer le tableau des critères
         foreach ($criterias as $f => $v) {
-            $fields[] = "$f = ?";
+            $fields[] = "$f = ";
             $values[] = $v;
         }
         // On transforme le tableau en chaîne de caractères séparée par des AND

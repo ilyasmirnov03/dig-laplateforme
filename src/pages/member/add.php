@@ -74,7 +74,7 @@ echo HTTP::head("ajout");
             <div class="mb-3 changeable">
                 <select name="animal" class="form-select">
                     <option selected disabled value="">--Choisissez l'impact animale--</option>
-                    <option value="vegan">Vegan</option>
+                    <option value="vegan">Végétal</option>
                     <option value="vegetarien">Vegetarien</option>
                     <option value="chair-animale">Chair animale</option>
                 </select>

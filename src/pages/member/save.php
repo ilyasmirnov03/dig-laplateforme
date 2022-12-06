@@ -2,7 +2,6 @@
 
 use App\Model\Products;
 
-dump($_POST);
 
 Products::getInstance()->create([
     'libelle' => $_POST['libelle'],
