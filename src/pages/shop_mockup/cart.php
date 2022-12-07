@@ -1,6 +1,17 @@
 <?php
 
+session_start();
+
 use App\Helper\HTTP;
+use App\Model\Products;
+
+$products = array();
+foreach ($_SESSION['products'] as $i => $product) {
+    array_push($products, Products::getInstance()->find($product['id']));
+    $products[$i]['quantity'] = $product['quantity'];
+}
+
+dump($products);
 
 echo HTTP::head("Leaf Score");
 
@@ -17,36 +28,36 @@ echo HTTP::head("Leaf Score");
                 </div>
                 <div class="cart-overview">
                     <ul class="cart-items">
-                        <?php if (empty($_POST['products'])) { ?>
+                        <?php if (empty($products)) { ?>
                             <p class="text-muted">Le panier est vide.</p>
                             <?php } else {
-                            foreach ($_POST['products'] as $i => $product) { ?>
+                            foreach ($products as $i => $product) { ?>
                                 <li class="cart-item">
-                                    <div class="product-line-grid">
+                                    <div class="row">
                                         <!-- quantity -->
-                                        <div class="product-line-grid-left col-md-2 col-xs-2 qty">
+                                        <div class="col-md-2">
                                             <div>
-                                                <?php echo "1" ?>
+                                                <?php echo $product['quantity'] ?>
                                             </div>
                                         </div>
                                         <!-- img -->
-                                        <div class="product-line-grid-left col-md-2 col-xs-3">
-                                            <span class="product-image media-middle">
+                                        <div class="col-md-2 col-xs-3">
+                                            <span class="fs-2">
                                                 <i class="fa-solid fa-image"></i>
                                             </span>
                                         </div>
                                         <!-- product info -->
-                                        <div class="product-line-grid-body col-md-8 col-xs-7">
+                                        <div class="col-md-8 col-xs-7 fs-4">
                                             <div class="row">
-                                                <span class="col-md-5 col-xs-12">
+                                                <span class="col-md-4">
                                                     <?php echo $product['libelle'] ?>
                                                 </span>
-                                                <div class="product-line-grid-body col-md-8 col-xs-8 price">
+                                                <div class="col-md-4">
                                                     <strong>
-                                                        <?php echo $product['prix'] ?>
+                                                        <?php echo $product['prix'] ?>€
                                                     </strong>
                                                 </div>
-                                                <div class="product-line-grid-right product-line-actions col-md-4 col-xs-4">
+                                                <div class="col-md-4 col-xs-4">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </div>
                                             </div>
@@ -97,6 +108,7 @@ echo HTTP::head("Leaf Score");
         </div>
     </section>
 </main>
+
 <?php
 
 echo HTTP::footer();
