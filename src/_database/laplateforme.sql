@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Дек 06 2022 г., 19:34
--- Версия сервера: 10.4.25-MariaDB
--- Версия PHP: 8.1.10
+-- Hôte : 127.0.0.1
+-- Généré le : mer. 07 déc. 2022 à 17:13
+-- Version du serveur : 10.4.21-MariaDB
+-- Version de PHP : 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `laplateforme`
+-- Base de données : `laplateforme`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `entreprises`
+-- Structure de la table `entreprises`
 --
 
 CREATE TABLE `entreprises` (
@@ -34,7 +34,7 @@ CREATE TABLE `entreprises` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Дамп данных таблицы `entreprises`
+-- Déchargement des données de la table `entreprises`
 --
 
 INSERT INTO `entreprises` (`idEnt`, `nomEnt`, `labels`) VALUES
@@ -54,7 +54,7 @@ INSERT INTO `entreprises` (`idEnt`, `nomEnt`, `labels`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `produits`
+-- Structure de la table `produits`
 --
 
 CREATE TABLE `produits` (
@@ -63,51 +63,52 @@ CREATE TABLE `produits` (
   `idEnt` int(100) NOT NULL,
   `categorie` varchar(100) NOT NULL,
   `provenance` varchar(50) NOT NULL,
-  `bio` varchar(20) NOT NULL,
-  `impactAnimal` varchar(50) NOT NULL,
-  `recup` varchar(20) NOT NULL,
-  `leafScore` int(1) DEFAULT NULL
+  `bio` varchar(20) DEFAULT NULL,
+  `impactAnimal` varchar(50) DEFAULT NULL,
+  `recup` varchar(20) DEFAULT NULL,
+  `leafScore` int(1) DEFAULT NULL,
+  `prix` int(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Индексы сохранённых таблиц
+-- Index pour les tables déchargées
 --
 
 --
--- Индексы таблицы `entreprises`
+-- Index pour la table `entreprises`
 --
 ALTER TABLE `entreprises`
   ADD PRIMARY KEY (`idEnt`);
 
 --
--- Индексы таблицы `produits`
+-- Index pour la table `produits`
 --
 ALTER TABLE `produits`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idEnt` (`idEnt`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT для таблицы `entreprises`
+-- AUTO_INCREMENT pour la table `entreprises`
 --
 ALTER TABLE `entreprises`
   MODIFY `idEnt` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT для таблицы `produits`
+-- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- Ограничения внешнего ключа сохраненных таблиц
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Ограничения внешнего ключа таблицы `produits`
+-- Contraintes pour la table `produits`
 --
 ALTER TABLE `produits`
   ADD CONSTRAINT `idEnt` FOREIGN KEY (`idEnt`) REFERENCES `entreprises` (`idEnt`) ON DELETE CASCADE ON UPDATE CASCADE;

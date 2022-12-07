@@ -23,14 +23,14 @@ const hide = (arr) => {
 }
 
 const categoriesHandler = (e) => {
-    if (e.target.tagName === "OPTION") {
+        let optionValue = document.querySelector(`[value="${e.target.value}"]`).dataset.categorieGroup;
         // initialization
         selector = "";
         hide(document.querySelectorAll('.changeable'));
         // constructing the selector in format [name="animal"],[name="bio"]
-        categorieInputMatch[e.target.dataset.categorieGroup].forEach((categorie, i) => {
+        categorieInputMatch[optionValue].forEach((categorie, i) => {
             selector += `[name="${categorie}"],`;
-            if (i === categorieInputMatch[e.target.dataset.categorieGroup].length - 1) {
+            if (i === categorieInputMatch[optionValue].length - 1) {
                 selector = selector.substring(0, selector.length - 1);
             }
         });
@@ -38,12 +38,11 @@ const categoriesHandler = (e) => {
         document.querySelectorAll(selector).forEach(el => {
             el.closest('div.mb-3').classList.remove("d-none");
         });
-    }
 }
 
 // all event listeners
 const eventListeners = () => {
-    document.querySelector('.categorie-select').addEventListener("click", categoriesHandler);
+    document.querySelector('.categorie-select').addEventListener("change", categoriesHandler);
 }
 
 // program initialization

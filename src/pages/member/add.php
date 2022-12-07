@@ -56,6 +56,10 @@ echo HTTP::head("ajout");
                     <option value="autre">Autre</option>
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="prix" class="form-label">Prix en €</label>
+                <input name="prix" type="number" class="form-control" required>
+            </div>
             <div class="mb-3 changeable">
                 <p>Produit bio :</p>
                 <div class="form-check">
@@ -74,9 +78,9 @@ echo HTTP::head("ajout");
             <div class="mb-3 changeable">
                 <select name="animal" class="form-select">
                     <option selected disabled value="">--Choisissez l'impact animale--</option>
-                    <option value="vegan">Végétal</option>
-                    <option value="vegetarien">Vegetarien</option>
-                    <option value="chair-animale">Chair animale</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="vegetarien">Végetarien</option>
+                    <option value="animale">Autre</option>
                 </select>
             </div>
             <div class="mb-3 changeable">
