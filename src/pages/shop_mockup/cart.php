@@ -5,13 +5,19 @@ session_start();
 use App\Helper\HTTP;
 use App\Model\Products;
 
+// products query in db
 $products = array();
 foreach ($_SESSION['products'] as $i => $product) {
     array_push($products, Products::getInstance()->find($product['id']));
     $products[$i]['quantity'] = $product['quantity'];
 }
 
-dump($products);
+$prixTotal = 0;
+foreach ($products as $product) {
+    $prixTotal += $product['prix'] * $product['quantity'];
+}
+// marge
+$prixTotal *= 1.05;
 
 echo HTTP::head("Leaf Score");
 
@@ -54,7 +60,7 @@ echo HTTP::head("Leaf Score");
                                                 </span>
                                                 <div class="col-md-4">
                                                     <strong>
-                                                        <?php echo $product['prix'] ?>€
+                                                        <?php echo $product['prix'] * $product['quantity'] ?>€
                                                     </strong>
                                                 </div>
                                                 <div class="col-md-4 col-xs-4">
@@ -94,7 +100,27 @@ echo HTTP::head("Leaf Score");
                         <div class="card-block cart-summary-totals">
                             <div class="cart-summary-line cart-total">
                                 <span class="label">Total&nbsp;TTC</span>
-                                <span class="value">prix</span>
+                                <span class="value"><?php echo number_format($prixTotal, 2) ?>€</span>
+                            </div>
+                        </div>
+                        <!-- round to superior number -->
+                        <div class="card-block d-flex">
+                            <div class="col-8">
+                                <p>Voulez-vous arrondir votre panier votre panier à <?php echo ceil($prixTotal) ?>€ et reverser <?php echo number_format(ceil($prixTotal) - $prixTotal, 2) ?>€ à une association ?</p>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" value="1" type="radio" name="recup">
+                                    <label class="form-check-label" for="recup1">
+                                        Oui
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" value="0" type="radio" name="recup">
+                                    <label class="form-check-label" for="recup2">
+                                        Non
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>

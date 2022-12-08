@@ -1,5 +1,7 @@
 <?php
 
+use App\Helper\HTTP;
+
 session_start();
 
 if (!isset($_SESSION['products'])) {
@@ -32,4 +34,4 @@ if (shouldArrayBePushed()) {
     array_push($_SESSION['products'], ['id' => $_GET['id'], 'quantity' => 1]);
 }
 
-dump($_SESSION);
+HTTP::redirect('/cart');
