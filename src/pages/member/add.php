@@ -26,7 +26,7 @@ echo HTTP::head("ajout");
                     <option data-categorie-group="1" value="vehicule">Véhicule</option>
                     <option data-categorie-group="5" value="entretien">Produit d'entretien</option>
                     <option data-categorie-group="1" value="loisirs">Loisirs</option>
-                    <option data-categorie-group="4" value="bagagerie">Bagagerie</option>
+                    <option data-categorie-group="4" value="maroquinerie">Bagagerie</option>
                 </select>
             </div>
             <div class="mb-3">
