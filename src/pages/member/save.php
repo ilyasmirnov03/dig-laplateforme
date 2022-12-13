@@ -3,8 +3,6 @@
 use App\Helper\HTTP;
 use App\Model\Products;
 
-use function PHPSTORM_META\map;
-
 // calcul
 
 $categorieMatcher = [
