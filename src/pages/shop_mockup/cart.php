@@ -5,17 +5,21 @@ session_start();
 use App\Helper\HTTP;
 use App\Model\Products;
 
-// products query in db
 $products = array();
-foreach ($_SESSION['products'] as $i => $product) {
-    array_push($products, Products::getInstance()->find($product['id']));
-    $products[$i]['quantity'] = $product['quantity'];
+$prixTotal = 0;
+
+// products query in db
+if (isset($_SESSION['products'])) {
+    foreach ($_SESSION['products'] as $i => $product) {
+        array_push($products, Products::getInstance()->find($product['id']));
+        $products[$i]['quantity'] = $product['quantity'];
+    }
+
+    foreach ($products as $product) {
+        $prixTotal += $product['prix'] * $product['quantity'];
+    }
 }
 
-$prixTotal = 0;
-foreach ($products as $product) {
-    $prixTotal += $product['prix'] * $product['quantity'];
-}
 // marge
 $prixTotal *= 1.05;
 

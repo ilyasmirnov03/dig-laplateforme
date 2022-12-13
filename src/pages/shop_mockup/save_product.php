@@ -35,3 +35,4 @@ if (shouldArrayBePushed()) {
 }
 
 HTTP::redirect('/cart');
+die();
