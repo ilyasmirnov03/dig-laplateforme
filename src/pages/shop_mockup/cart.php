@@ -7,6 +7,7 @@ use App\Model\Products;
 
 $products = array();
 $prixTotal = 0;
+$leafScore = 0;
 
 // products query in db
 if (isset($_SESSION['products'])) {
@@ -17,7 +18,15 @@ if (isset($_SESSION['products'])) {
 
     foreach ($products as $product) {
         $prixTotal += $product['prix'] * $product['quantity'];
+
+        $leafScore += $product['leafScore'];
     }
+
+    if (count($products) > 1) {
+        $leafScore /= count($products);
+    }
+
+    $leafScore = ceil($leafScore);
 }
 
 // marge
@@ -61,6 +70,7 @@ echo HTTP::head("Leaf Score");
                                             <div class="row">
                                                 <span class="col-md-4">
                                                     <?php echo $product['libelle'] ?>
+                                                    <img class="d-block pt-1 w-75" src="<?php echo HTTP::url("/assets/leafscore/feuilles" . ceil($product['leafScore']) . ".svg") ?>" alt="">
                                                 </span>
                                                 <div class="col-md-4">
                                                     <strong>
@@ -125,6 +135,22 @@ echo HTTP::head("Leaf Score");
                                         Non
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="card-block d-flex pt-0">
+                            <div class="col-7">
+                                <p class="fw-bold">Leafscore du panier : </p>
+                            </div>
+                            <div class="col-5">
+                                <img src="<?php echo HTTP::url("/assets/leafscore/feuilles" . ceil($leafScore) . ".svg") ?>" alt="">
+                            </div>
+                        </div>
+                        <div class="card-block d-flex">
+                            <div class="col-7">
+                                <p class="fw-bold">Plateforme coins : </p>
+                            </div>
+                            <div class="col-5">
+                                <p>coins <span><img class="img-fluid" src="<?php echo HTTP::url('/assets/coins/pf-coins.svg')?>" alt="plateforme coins"></span></p>
                             </div>
                         </div>
                     </div>

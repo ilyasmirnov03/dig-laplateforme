@@ -122,7 +122,7 @@ Products::getInstance()->create([
     'bio' => isset($_POST['bio']) ? $_POST['bio'] : "",
     'impactAnimal' => isset($_POST['animal']) ? $_POST['animal'] : "",
     'recup' => isset($_POST['recup']) ? $_POST['recup'] : "",
-    'leafScore' => ceil($leafScore) 
+    'leafScore' => $leafScore
 ]);
 
 HTTP::redirect('/add');
