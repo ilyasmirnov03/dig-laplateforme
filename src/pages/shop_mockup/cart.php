@@ -6,8 +6,18 @@ use App\Helper\HTTP;
 use App\Model\Products;
 
 $products = array();
+
 $prixTotal = 0;
 $leafScore = 0;
+$productQuantity = 0;
+
+$loyaltyPointsMultiplier = [
+    1 => 1,
+    2 => 1,
+    3 => 1.05,
+    4 => 1.1,
+    5 => 1.15,
+];
 
 // products query in db
 if (isset($_SESSION['products'])) {
@@ -19,14 +29,17 @@ if (isset($_SESSION['products'])) {
     foreach ($products as $product) {
         $prixTotal += $product['prix'] * $product['quantity'];
 
-        $leafScore += $product['leafScore'];
+        $leafScore += $product['leafScore'] * $product['quantity'];
+
+        $productQuantity += $product['quantity'];
     }
 
     if (count($products) > 1) {
-        $leafScore /= count($products);
+        $leafScore /= $productQuantity;
     }
 
     $leafScore = ceil($leafScore);
+
 }
 
 // marge
@@ -74,7 +87,7 @@ echo HTTP::head("Leaf Score");
                                                 </span>
                                                 <div class="col-md-4">
                                                     <strong>
-                                                        <?php echo $product['prix'] * $product['quantity'] ?>€
+                                                        <?php echo number_format($product['prix'] * $product['quantity'], 2) ?>€
                                                     </strong>
                                                 </div>
                                                 <div class="col-md-4 col-xs-4">
@@ -117,40 +130,33 @@ echo HTTP::head("Leaf Score");
                                 <span class="value"><?php echo number_format($prixTotal, 2) ?>€</span>
                             </div>
                         </div>
-                        <!-- round to superior number -->
-                        <div class="card-block d-flex">
-                            <div class="col-8">
-                                <p>Voulez-vous arrondir votre panier votre panier à <?php echo ceil($prixTotal) ?>€ et reverser <?php echo number_format(ceil($prixTotal) - $prixTotal, 2) ?>€ à une association ?</p>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" value="1" type="radio" name="recup">
-                                    <label class="form-check-label" for="recup1">
-                                        Oui
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" value="0" type="radio" name="recup">
-                                    <label class="form-check-label" for="recup2">
-                                        Non
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="card-block d-flex pt-0">
-                            <div class="col-7">
-                                <p class="fw-bold">Leafscore du panier : </p>
+                            <div class="col-7 d-flex align-items-center">
+                                <p class="fw-bold m-0">Leafscore du panier : </p>
                             </div>
-                            <div class="col-5">
-                                <img src="<?php echo HTTP::url("/assets/leafscore/feuilles" . ceil($leafScore) . ".svg") ?>" alt="">
+                            <div class="col-5 text-end">
+                                <img id="leafscore" class="w-75" src="<?php echo HTTP::url("/assets/leafscore/feuilles" . ceil($leafScore) . ".svg") ?>" alt="">
                             </div>
                         </div>
                         <div class="card-block d-flex">
-                            <div class="col-7">
-                                <p class="fw-bold">Plateforme coins : </p>
+                            <div class="col-8 d-flex align-items-center">
+                                <p class="fw-bold m-0">Plateforme coins :</p>
                             </div>
-                            <div class="col-5">
-                                <p>coins <span><img class="img-fluid" src="<?php echo HTTP::url('/assets/coins/pf-coins.svg')?>" alt="plateforme coins"></span></p>
+                            <div class="col-4 d-flex align-items-center justify-content-end">
+                                <p class="px-1 m-0"><?php echo ceil($prixTotal * $loyaltyPointsMultiplier[$leafScore]) ?></p><img id="coins" class="img-fluid" src="<?php echo HTTP::url('/assets/coins/pf-coins.svg') ?>" alt="plateforme coins">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- round to superior number -->
+                    <div class="card-block d-flex">
+                        <div class="col-8">
+                            <p>Voulez-vous arrondir votre panier votre panier à <?php echo ceil($prixTotal) ?>€ et reverser <?php echo number_format(ceil($prixTotal) - $prixTotal, 2) ?>€ à une association ?</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="radio text-end">
+                                <input label="Oui" type="radio" name="donate" value="1">
+                                <input label="Non" type="radio" name="donate" value="0" checked="true">
                             </div>
                         </div>
                     </div>

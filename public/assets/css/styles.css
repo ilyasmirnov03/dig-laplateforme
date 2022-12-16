@@ -35,3 +35,42 @@
     background-color:#fff;
 }
 
+#coins,
+#leafscore {
+    height:2rem;
+}
+
+
+/*----------  Radio btns  ----------*/
+
+.radio {
+	padding: 4px;
+	border-radius: 3px;
+}
+
+.radio input {
+	width: auto;
+	height: 100%;
+    color:#07237b;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	cursor: pointer;
+	border-radius: 2px;
+	padding: 4px 8px;
+	font-size: 14px;
+	transition: all 100ms linear;
+}
+
+.radio input:checked {
+	outline:solid 1px #07237b;
+	background-color:#f7c608;
+}
+
+.radio input:before {
+	content: attr(label);
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
