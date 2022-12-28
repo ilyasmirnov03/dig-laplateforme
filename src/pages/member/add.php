@@ -6,7 +6,7 @@ echo HTTP::head("ajout");
 
 ?>
 
-<body>
+<body class="pt-5">
     <div class="w-25 mx-auto">
         <h1 class="text-center">Ajout produit</h1>
         <form action="<?php echo HTTP::url('/save') ?>" method="POST">
