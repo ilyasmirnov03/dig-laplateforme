@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 07 déc. 2022 à 17:13
+-- Généré le : mer. 04 jan. 2023 à 11:23
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 8.0.12
 
@@ -66,8 +66,8 @@ CREATE TABLE `produits` (
   `bio` varchar(20) DEFAULT NULL,
   `impactAnimal` varchar(50) DEFAULT NULL,
   `recup` varchar(20) DEFAULT NULL,
-  `leafScore` int(1) DEFAULT NULL,
-  `prix` int(16) NOT NULL
+  `leafScore` float DEFAULT NULL,
+  `prix` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
