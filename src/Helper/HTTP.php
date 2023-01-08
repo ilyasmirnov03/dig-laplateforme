@@ -42,6 +42,23 @@ class HTTP
  HTML_HEAD;
   }
 
+  /**
+   * Affiche le header du HTML.
+   *
+   * @return string
+   */
+  public static function headerHTML()
+  {
+    return '<header id="main-header">
+    <nav>
+        <ul>
+            <li><a href="' . HTTP::url("/add") . '"><i class="fa-solid fa-plus"></i></a></li>
+            <li><a href="' . HTTP::url("/shop") . '"><i class="fa-solid fa-bag-shopping"></i></a></li>
+            <li><a href="' . HTTP::url("/cart") . '"><i class="fa-solid fa-cart-shopping"></i></a></li>
+        </ul>
+    </nav>
+</header>';
+  }
 
   /**
    * Affiche le footer du HTML.

@@ -46,6 +46,7 @@ if (isset($_SESSION['products'])) {
 $prixTotal *= 1.05;
 
 echo HTTP::head("Leaf Score");
+echo HTTP::headerHTML();
 
 ?>
 

@@ -6,6 +6,7 @@ use App\Model\Products;
 $products = Products::getInstance()->findAll();
 
 echo HTTP::head('Shop');
+echo HTTP::headerHTML();
 
 ?>
 

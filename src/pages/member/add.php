@@ -3,6 +3,7 @@
 use App\Helper\HTTP;
 
 echo HTTP::head("ajout");
+echo HTTP::headerHTML();
 
 ?>
 

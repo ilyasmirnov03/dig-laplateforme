@@ -20,6 +20,42 @@
 }
 
 /*=============================================
+=            Header                           =
+=============================================*/
+
+#main-header {
+    position:fixed;
+    top:0;
+    right:0;
+    width:25%;
+    padding:1rem 2rem;
+}
+
+#main-header ul {
+    list-style: none;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+#main-header a {
+    display:grid;
+    place-items: center;
+    font-size:3rem;
+    width:6rem;
+    height:6rem;
+    border-radius: 50%;
+    background:var(--yellow);
+}
+
+#main-header a:hover {
+    background:var(--blue);
+}
+
+#main-header a:hover i {
+    color:var(--yellow);
+}
+
+/*=============================================
 =            Cart styling                     =
 =============================================*/
 
