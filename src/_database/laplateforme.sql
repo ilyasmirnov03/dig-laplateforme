@@ -60,7 +60,7 @@ INSERT INTO `entreprises` (`idEnt`, `nomEnt`, `labels`) VALUES
 CREATE TABLE `produits` (
   `id` int(10) NOT NULL,
   `libelle` varchar(100) NOT NULL,
-  `idEnt` int(100) NOT NULL,
+  `idEnt` int(100) DEFAULT NULL,
   `categorie` varchar(100) NOT NULL,
   `provenance` varchar(50) NOT NULL,
   `bio` varchar(20) DEFAULT NULL,
