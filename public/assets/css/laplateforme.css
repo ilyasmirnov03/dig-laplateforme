@@ -76,8 +76,47 @@
     height:2rem;
 }
 
+#about-association {
+    cursor:pointer;
+    position:relative;
+    display:inline-block;
+    font-size:75%;
+    width:1rem;
+    height:1rem;
+    border-radius:50%;
+    border:1px solid var(--blue);
+}
 
-/*----------  Radio btns  ----------*/
+#about-association::after {
+    content: attr(data-popuptext);
+    color:white;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 3px;
+    opacity: 0;
+    top: -2rem;
+    left: 50%;
+    position: absolute;
+    transition: 250ms ease;
+    white-space: nowrap;
+    transform:translateX(-50%);
+    font-size:1rem;
+}
+  
+#about-association:hover::after {
+    opacity: 1;
+    padding: .4em;
+}
+
+#about-association span {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+
+/*=============================================
+=            Radio buttons                    =
+=============================================*/
 
 .radio {
 	padding: 4px;

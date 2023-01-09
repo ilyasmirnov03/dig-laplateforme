@@ -2,6 +2,11 @@
 
 session_start();
 
+function is_decimal($val)
+{
+    return is_numeric($val) && floor($val) != $val;
+}
+
 use App\Helper\HTTP;
 use App\Model\Products;
 
@@ -39,11 +44,7 @@ if (isset($_SESSION['products'])) {
     }
 
     $leafScore = ceil($leafScore);
-
 }
-
-// marge
-$prixTotal *= 1.05;
 
 echo HTTP::head("Leaf Score");
 echo HTTP::headerHTML();
@@ -137,7 +138,11 @@ echo HTTP::headerHTML();
                                 <p class="fw-bold m-0">Leafscore du panier : </p>
                             </div>
                             <div class="col-5 text-end">
-                                <img id="leafscore" class="w-75" src="<?php echo HTTP::url("/assets/leafscore/feuilles" . ceil($leafScore) . ".svg") ?>" alt="">
+                                <?php if ($leafScore === 0) { ?>
+                                    <p>Votre panier est vide.</p>
+                                <?php } else { ?>
+                                    <img id="leafscore" class="w-75" src="<?php echo HTTP::url("/assets/leafscore/feuilles" . ceil($leafScore) . ".svg") ?>" alt="">
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="card-block d-flex">
@@ -145,14 +150,18 @@ echo HTTP::headerHTML();
                                 <p class="fw-bold m-0">Plateforme coins :</p>
                             </div>
                             <div class="col-4 d-flex align-items-center justify-content-end">
-                                <p class="px-1 m-0"><?php echo ceil($prixTotal * $loyaltyPointsMultiplier[$leafScore]) ?></p><img id="coins" class="img-fluid" src="<?php echo HTTP::url('/assets/coins/pf-coins.svg') ?>" alt="plateforme coins">
+                                <p class="px-1 m-0"><?php echo is_decimal($prixTotal) ? ceil($prixTotal * $loyaltyPointsMultiplier[$leafScore]) : 0 ?></p><img id="coins" class="img-fluid" src="<?php echo HTTP::url('/assets/coins/pf-coins.svg') ?>" alt="plateforme coins">
                             </div>
                         </div>
                     </div>
                     <!-- round to superior number -->
                     <div class="card-block d-flex">
                         <div class="col-8">
-                            <p>Voulez-vous arrondir votre panier votre panier à <?php echo ceil($prixTotal) ?>€ et reverser <?php echo number_format(ceil($prixTotal) - $prixTotal, 2) ?>€ à une association ?</p>
+                            <p id="round-price">Voulez-vous arrondir votre panier votre panier à 
+                                <strong><?php echo is_decimal($prixTotal) ? ceil($prixTotal) : ceil($prixTotal + 1) ?>€</strong>
+                                et reverser <?php echo is_decimal($prixTotal) ? number_format(ceil($prixTotal) - $prixTotal, 2) : 1 ?>€ à une association ?
+                                <span data-popuptext="Adapei Charente" id="about-association"><span>?</span></span>
+                            </p>
                         </div>
                         <div class="col-4">
                             <div class="radio text-end">

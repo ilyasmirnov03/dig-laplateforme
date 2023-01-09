@@ -51,7 +51,7 @@ $calculator = [
     ]
 ];
 
-if ((int)$_POST['recup'] === 1) {
+if (isset($_POST['recup']) && (int)$_POST['recup'] === 1) {
     $leafScore = 5;
 } else {
     $leafScore = 0.5;
@@ -115,7 +115,6 @@ if ((int)$_POST['recup'] === 1) {
 
 Products::getInstance()->create([
     'libelle' => $_POST['libelle'],
-    'idEnt' => $_POST['entreprise'],
     'categorie' => $_POST['categorie'],
     'provenance' => $_POST['provenance'],
     'prix' => $_POST['prix'],

@@ -31,23 +31,6 @@ echo HTTP::headerHTML();
                 </select>
             </div>
             <div class="mb-3">
-                <select name="entreprise" class="form-select categorie-select" required>
-                    <option selected disabled value="">--Choisissez votre entreprise--</option>
-                    <option value="1">foodCharente</option>
-                    <option value="2">nourriture16</option>
-                    <option value="3">vêtement16</option>
-                    <option value="4">lesfringuesdu16</option>
-                    <option value="5">cosmé16</option>
-                    <option value="6">cosmetiqueCharente</option>
-                    <option value="7">laboîteatrucs</option>
-                    <option value="8">meubles16</option>
-                    <option value="9">meublesCharente</option>
-                    <option value="10">proprete16</option>
-                    <option value="11">maroquinerie16</option>
-                    <option value="12">maroCharente</option>
-                </select>
-            </div>
-            <div class="mb-3">
                 <select name="provenance" class="form-select" required>
                     <option selected disabled value="">--Choisissez la provenance du produit--</option>
                     <option value="charente">Charente</option>
@@ -59,7 +42,7 @@ echo HTTP::headerHTML();
             </div>
             <div class="mb-3">
                 <label for="prix" class="form-label">Prix en €</label>
-                <input name="prix" type="number" class="form-control" required>
+                <input name="prix" type="number" step="0.01" class="form-control" required>
             </div>
             <div class="mb-3 changeable">
                 <p>Produit bio :</p>
